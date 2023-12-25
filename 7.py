@@ -1,5 +1,5 @@
 from collections import defaultdict
-from heapq import heappop, heappush
+from heapq import heapify, heappop, heappush
 import re
 from aoc import read_input
 
@@ -16,7 +16,8 @@ for line in lines:
 
 
 def part1(adj, indegree):
-    indegree_zero = sorted([n for n, v in indegree.items() if v == 0])
+    indegree_zero = [n for n, v in indegree.items() if v == 0]
+    heapify(indegree_zero)
 
     order = ""
     while len(indegree_zero) > 0:
@@ -32,7 +33,8 @@ def part1(adj, indegree):
 
 print(part1(adj, indegree.copy()))
 
-indegree_zero = sorted([n for n, v in indegree.items() if v == 0])
+indegree_zero = [n for n, v in indegree.items() if v == 0]
+heapify(indegree_zero)
 workers = [None for _ in range(5)]
 second = 0
 while True:
